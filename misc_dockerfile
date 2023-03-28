@@ -1,0 +1,72 @@
+### HEROKU ###
+
+# FROM python:3.8
+# COPY . /app
+# WORKDIR /app
+# RUN pip install -r requirements.txt
+# EXPOSE $PORT
+# CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
+
+
+### PYTHON-LATEST ### 
+# FROM python:3-alpine3.15
+# COPY . /app
+# WORKDIR /app
+# RUN pip install -r requirements.txt
+# EXPOSE 8000
+# CMD python ./app.py
+
+
+### PYTHON ###
+# FROM python:3.6.1-alpine
+# COPY . /app
+# WORKDIR /app
+# # RUN pip install --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org --upgrade --proxy=127.0.0.1:3128 -r requirements.txt
+# RUN pip install -r requirements.txt
+# EXPOSE 8000
+# CMD ["python", "app.py"]
+
+
+### PYTHON ###
+# FROM alpine:latest
+# RUN apk add --no-cache python3-dev && pip3 install --upgrade pip
+# COPY . /app
+# WORKDIR /app
+# RUN pip3 install -r requirements.txt
+# EXPOSE 8000
+# ENTRYPOINT ["python"]
+# CMD ["app.py"]
+
+### PYTHON ###
+# FROM python:3-alpine
+# COPY . /app
+# WORKDIR /app
+# RUN pip install -r requirements.txt
+# EXPOSE 8000
+# CMD ["python", "app.py"]
+
+### PYTHON ###
+# FROM ubuntu:18.04
+# RUN apt-get update -y && apt-get install python-pip python-dev -y
+# COPY . /app
+# WORKDIR /app
+# RUN pip install -r requirements.txt
+# EXPOSE 8000
+# CMD ["python", "app.py"]
+
+### PYTHON ###
+# FROM python:3.8
+# COPY . /app
+# WORKDIR /app
+# RUN pip3 install -r requirements.txt
+# EXPOSE 8000
+# ENTRYPOINT ["python"]
+# CMD ["app.py"]
+
+### PYTHON ###
+# FROM python:3.11.0a6-alpine3.15
+# COPY . /app
+# WORKDIR /app
+# RUN pip3 install -r requirements.txt --no-cache-dir
+# EXPOSE 8000
+# CMD python app.py
