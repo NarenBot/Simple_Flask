@@ -8,7 +8,7 @@
 # CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
 
 
-### PYTHON-LATEST ### 
+### PYTHON-LATEST ### [Flask==2.2.3]
 # FROM python:3-alpine3.15
 # COPY . /app
 # WORKDIR /app
@@ -17,7 +17,7 @@
 # CMD python ./app.py
 
 
-### PYTHON ###
+### PYTHON ### [Could not find a version that satisfies the requirement Flask]
 # FROM python:3.6.1-alpine
 # COPY . /app
 # WORKDIR /app
@@ -27,9 +27,10 @@
 # CMD ["python", "app.py"]
 
 
-### PYTHON ###
+### PYTHON ### [unable to select packages]
 # FROM alpine:latest
-# RUN apk add --no-cache python3-dev && pip3 install --upgrade pip
+# RUN apk add --update --no-cache python3
+# RUN pip3 install --no-cache --upgrade pip
 # COPY . /app
 # WORKDIR /app
 # RUN pip3 install -r requirements.txt
@@ -37,7 +38,7 @@
 # ENTRYPOINT ["python"]
 # CMD ["app.py"]
 
-### PYTHON ###
+### PYTHON ### [Could not install packages due to an OSError]
 # FROM python:3-alpine
 # COPY . /app
 # WORKDIR /app

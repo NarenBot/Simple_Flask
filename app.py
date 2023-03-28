@@ -1,7 +1,8 @@
-from flask import Flask, render_template
-from redis import Redis
+from flask import Flask, render_template, url_for
+
 
 app = Flask(__name__)
+# from redis import Redis
 # redis = Redis(host="redis", port=6379)
 
 
