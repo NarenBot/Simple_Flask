@@ -1,0 +1,12 @@
+/* INDEX PAGE */
+
+body {
+    background-image: url("images/Forest-Fire.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 200px;
+}
