@@ -1,17 +1,14 @@
 from flask import Flask, render_template, url_for
 
-
 app = Flask(__name__)
-# from redis import Redis
-# redis = Redis(host="redis", port=6379)
+count = 0
 
 
 @app.route("/")
 def home():
-    # redis.incr("hits")
-    # counter = str(redis.get("hits"), "utf-8")
-    counter = 10
-    return render_template("index.html", counter=counter)
+    global count
+    count += 1
+    return render_template("index.html", counter=count)
 
 
 if __name__ == "__main__":
