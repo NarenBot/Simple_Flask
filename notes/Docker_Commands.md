@@ -1,4 +1,4 @@
-## Basic Commands:
+# Basic Commands:
 01. docker version [Show the Docker version information]
 02. docker ps [List containers]
 03. docker images [List images]
@@ -15,14 +15,14 @@
 14. docker inspect [Return low-level information on Docker objects/images/networks such as Ports, Metadata, etc.,]
 15. docker pull learnitguide/busapp:latest [<user-name/image-name:tag>]
 
-### Definitions:
+# Definitions:
 - Docker Registry - Where the images are stored.
 - Virtualization - uses virtual machine with the help of 'iso' files. Has dedicated OS.
 - Containerization - uses containers with the help of 'image' files. Has a single host OS.
 - docker.io = DockerHub
 
 
-### Commands Implementation:
+# Commands Implementation:
 ```bash
 - man docker-system-df [Another way to run commands but used for manual commands]
 - docker volume ls
@@ -37,14 +37,14 @@
 - docker pull httpd
 ```
 
-### To run container:
-```bash
+# To run container:
+```
 - docker ps -a [List all exited, stopped and running containers]
 - docker run --name web3 httpd (incorrect) [Create and Run a container with image name]
 - docker run -d --name web3 httpd [To daemonize/detach the container to run in background]
 ```
 
-### To login in container:
+# To login in container:
 ```bash
 - docker exec -it web3 /bin/sh [To login in running container. -it(interactive terminal)]
     - # bash
@@ -59,7 +59,7 @@
 - docker exec web3 ls /tmp
 ```
 
-### Copy and Logs:
+# Copy and Logs:
 ```bash
 - docker cp <srcpath> container-name:<despath>
     - docker cp C:\Users\Naren\iNeuron\Screenshots\JSON.png web3:/tmp/
@@ -68,7 +68,7 @@
 - docker logs web3
 ```
 
-### Using -it(interactive terminal) with bash for OS:
+# Using -it(interactive terminal) with bash for OS:
 ```bash
 - docker run -d --name dummy alpine [Since alpine is not an application it will be exited]
 - docker run -d -it --name dummy2 alpine /bin/bash [For os we need to use '-it' with 'bash']
@@ -77,7 +77,7 @@
 - docker pull ubuntu:latest
 ```
 
-### Inspecting host and port:
+# Inspecting host and port:
 ```bash
 - docker run -d --name myapp -p 81:80 httpd [custom-port:exposed-port]
 - ipconfig /all (ip a = Linux) [ipconfig in Windows and ipv4 address]
@@ -87,7 +87,7 @@
 - docker history learnitguide/busapp <image-name>
 ```
 
-### Image save and load:
+# Image save and load:
 ```bash
 - docker save alpine:latest > alpine-bkp.tar
 - docker load -i alpine-bkp.tar
@@ -95,7 +95,7 @@
 - docker rmi $(docker images -a -q)  [To use this command, you need to remove all containers]
 ```
 
-### To modify image and commit:
+# To modify image and commit:
 ```bash
 - docker run -d -it --name myapp ubuntu /bin/sh
 - docker exec -it myapp /bin/sh
@@ -106,7 +106,7 @@
 - docker push naren10/<image-name:tag>
 ```
 
-### To build an image and run:
+# To build an image and run:
 ```bash
 - docker build .
 - docker build -f <dockerfile path>
@@ -115,11 +115,11 @@
 - docker run -d -it --name myapp -p 81:80 myweb:latest ping google.com [Results error when CMD as instruction]
 ```
 
-#### CMD vs ENTRYPOINT:
+## CMD vs ENTRYPOINT:
 - CMD = It can overrides the command in the container, if we add arguments at the end of container creation.
 - ENTRYPOINT = It will never overrides the command in the container.
 
-### Network commands:
+# Network commands:
 ```bash
 - Network = Bridge(Docker0-172.17.0.1), None, Host
 - docker network ls
@@ -127,7 +127,7 @@
 - docker network inspect <network-name>
 ```
 
-### Simple_Flask_App: [host="0.0.0.0" | Port# in app.py and Dockerfile should be same]
+# Simple_Flask_App: [host="0.0.0.0" | Port# in app.py and Dockerfile should be same]
 ```bash
 - docker build -t flaskapp:latest .
 - docker run -d --name myapp -p 5000:8000 flaskapp:latest
@@ -135,7 +135,7 @@
 - docker push naren10/flaskapp:latest  [Pushed in docker.io]
 ```
 
-### To Check usage and remove unwanted objects:
+# To Check usage and remove unwanted objects:
 ```bash
 - docker system df
 - docker system df -v [verbose]
