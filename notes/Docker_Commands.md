@@ -18,7 +18,7 @@
 
 ### Prerequisites:
 - Windows 11 64-bit: Home or Pro version 21H2 or higher.
-- Enable the WSL 2 feature on Windows. (https://learn.microsoft.com/en-us/windows/wsl/install)[wsl --install]
+- Enable the WSL 2 feature on Windows. [wsl --install](https://learn.microsoft.com/en-us/windows/wsl/install)
 - Enable Virtualization.
 - Goto Turn Windows features on or off, then enable WSL and Hypervisor platform.
 
