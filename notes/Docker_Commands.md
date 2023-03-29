@@ -15,11 +15,23 @@
 14. docker inspect [Return low-level information on Docker objects/images/networks such as Ports, Metadata, etc.,]
 15. docker pull learnitguide/busapp:latest [<user-name/image-name:tag>]
 
+
+### Prerequisites:
+- Windows 11 64-bit: Home or Pro version 21H2 or higher.
+- Enable the WSL 2 feature on Windows. (https://learn.microsoft.com/en-us/windows/wsl/install)[wsl --install]
+- Enable Virtualization.
+- Goto Turn Windows features on or off, then enable WSL and Hypervisor platform.
+
 ## Definitions:
+- Container - Its a way of packaging the applications with all dependencies and configuration.
+    - A portable artifact easily share and run in any environment.
+    - Makes development and deployment more easy and efficient.
+    - It has layers of images. Images can only readable. Containers has R/W access.
+    - Disadvantage: has OS compatibility issue.
 - Docker Registry - Where the images are stored.
 - Virtualization - uses virtual machine with the help of 'iso' files. Has dedicated OS.
 - Containerization - uses containers with the help of 'image' files. Has a single host OS.
-- docker.io = DockerHub
+- docker.io = DockerHub = Build + Ship + Run
 
 
 ## Commands Implementation:

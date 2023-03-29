@@ -9,6 +9,12 @@ vi <fileName> #after vi, press "i" to insert the contents and to save press "esc
 cat <fileName>
 ```
 
+#### Package tool commands based on OS:
+- Ubuntu [apt-get]
+- Alpine [apk]
+- Centos [yum]
+
+
 ### Check version:
 ```python
 git --version
