@@ -18,9 +18,17 @@
 
 ### Prerequisites:
 - Windows 11 64-bit: Home or Pro version 21H2 or higher.
-- Enable the WSL 2 feature on Windows. [wsl --install](https://learn.microsoft.com/en-us/windows/wsl/install)
+- Enable the WSL 2 feature on Windows. [[wsl --install -d <distro>]](https://learn.microsoft.com/en-us/windows/wsl/install)
+- [[wsl --set-default alpine]](https://docs.docker.com/desktop/windows/wsl/)
 - Enable Virtualization.
 - Goto Turn Windows features on or off, then enable WSL and Hypervisor platform.
+
+
+#### Package tool commands based on OS:
+- Ubuntu [apt-get]
+- Alpine [apk]
+- Centos [yum]
+
 
 ## Definitions:
 - Container - Its a way of packaging the applications with all dependencies and configuration.

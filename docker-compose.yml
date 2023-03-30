@@ -1,0 +1,8 @@
+version: "3.0"
+services:
+  web:
+    image: flaskapp
+    container_name: myapp
+    build: .
+    ports:
+      - '5000:8000'

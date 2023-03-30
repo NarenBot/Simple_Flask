@@ -1,20 +1,3 @@
-## Linux Commands:
-```python
-cd #Change directory
-ls
-ls -la
-rm -rf <folderName>
-touch <fileName>
-vi <fileName> #after vi, press "i" to insert the contents and to save press "esc" :wq (write and quit)
-cat <fileName>
-```
-
-#### Package tool commands based on OS:
-- Ubuntu [apt-get]
-- Alpine [apk]
-- Centos [yum]
-
-
 ### Check version:
 ```python
 git --version
