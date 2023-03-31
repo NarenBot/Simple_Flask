@@ -3,6 +3,7 @@
 - Need to create service accounts based on each services with active keys.
 
 ### Commands:
+#### For Container Registry:
 ```bash
 - gcloud auth login
 - gcloud projects list
@@ -12,8 +13,14 @@
 - docker pull gcr.io/ml-project-382217/flask-app:red
 - gcloud config set project <project-name>
 - gcloud config set run/region us-central1
-- gcloud builds submit --tag gcr.io/ml-project-382217/flask-app:red .  [Build image on cloud]
-- gcloud run deploy --image gcr.io/ml-project-382217/flask-app:red  [Deploy on Cloud Run]
+- gcloud builds submit --tag gcr.io/ml-project-382217/flask-app:red .  # [Build image on cloud]
+- gcloud run deploy --image gcr.io/ml-project-382217/flask-app:red  # [Deploy on Cloud Run]
+```
+#### For Artifact Registry:
+``` bash
+- gcloud auth configure-docker asia-south1-docker.pkg.dev  # [To Configure Docker]
+- gcloud builds submit --tag asia-south1-docker.pkg.dev/ml-project-382217/images/flask-app:red .
+- gcloud run deploy --image asia-south1-docker.pkg.dev/ml-project-382217/images/flask-app:red  # [Deploy on Cloud Run]
 ```
 
 ### Linux Terminal Commands:
