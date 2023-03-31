@@ -3,4 +3,4 @@ This repo is for testing the simple 'Flask' app to deploy in various cloud servi
 
 
 ## Notes
-Check notes on Git commands, Docker commands and Deployment commands.
+Check notes on Git Commands, Docker Commands and Deployment Commands.
