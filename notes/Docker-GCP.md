@@ -10,6 +10,10 @@
 - gcloud auth configure-docker
 - docker push gcr.io/ml-project-382217/flask-app:red
 - docker pull gcr.io/ml-project-382217/flask-app:red
+- gcloud config set project <project-name>
+- gcloud config set run/region us-central1
+- gcloud builds submit --tag gcr.io/ml-project-382217/flask-app:red .  [Build image on cloud]
+- gcloud run deploy --image gcr.io/ml-project-382217/flask-app:red  [Deploy on Cloud Run]
 ```
 
 ### Linux Terminal Commands:
