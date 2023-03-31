@@ -1,12 +1,13 @@
 ### HEROKU ###
-# FROM python:3.8
-# COPY . /app
-# WORKDIR /app
-# RUN pip install -r requirements.txt
-# EXPOSE $PORT
-# CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
+FROM python:3.8
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+EXPOSE $PORT
+CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
 
-### Cloud Run-Container Registry ###
+### Cloud Run-Container Registry ### 
+# [Container will exited once you run locally] [Here you dont need to add Port in app.py]
 FROM python:3.8-slim-buster
 WORKDIR /src
 COPY . .
@@ -15,7 +16,8 @@ EXPOSE $PORT
 CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
 
 
-### PYTHON-RUNNING ### [Flask==2.2.3]
+### PYTHON-RUNNING-LOCAL ### [Flask==2.2.3]
+# [Note: Port should be same in app.py and Dockerfile (or) Port must be present add in app.py]
 FROM python:3.8-slim-buster
 WORKDIR /src
 COPY . .
@@ -25,13 +27,13 @@ CMD [ "python", "app.py"]
 
 
 ### PYTHON-RUNNING ### [Flask==2.2.3, Should not add app.run() inside app.py]
-FROM python:3.8-slim-buster
-WORKDIR /app
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-COPY . .
-EXPOSE 8000
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8000"]
+# FROM python:3.8-slim-buster
+# WORKDIR /app
+# COPY requirements.txt requirements.txt
+# RUN pip3 install -r requirements.txt
+# COPY . .
+# EXPOSE 8000
+# CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8000"]
 
 
 ### FOR DOCKER COMPOSE ###
@@ -45,14 +47,14 @@ CMD ["flask", "run"]
 
 
 ### CENTOS ###
-FROM centos:latest
-RUN cd /etc/yum.repos.d/
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-# RUN yum clean metadata
-RUN yum update -y
-RUN yum install httpd -y
-COPY index.html /var/html/index.html
-EXPOSE 80
-CMD apachectl -D FOREGROUND
+# FROM centos:latest
+# RUN cd /etc/yum.repos.d/
+# RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+# RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+# # RUN yum clean metadata
+# RUN yum update -y
+# RUN yum install httpd -y
+# COPY index.html /var/html/index.html
+# EXPOSE 80
+# CMD apachectl -D FOREGROUND
 
