@@ -12,12 +12,12 @@ jobs:
       PROJECT_ID: ml-project-382217
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - uses: google-github-actions/setup-gcloud@v1
+    - uses: google-github-actions/auth@v1
       with:
-        service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        project_id: ${{ env.PROJECT_ID }}
+        service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY}}
+        project_id: ${{env.PROJECT_ID}}
         export_default_credentials: true
 
     - name: Automatic Tagging of Releases
@@ -30,7 +30,6 @@ jobs:
 
     - name: Configure Docker Client
       run: |-
-        sudo gcloud auth login --no-launch-browser
         gcloud auth configure-docker --quiet
         gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
 
