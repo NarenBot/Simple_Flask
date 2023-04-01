@@ -30,6 +30,7 @@ jobs:
 
     - name: Configure Docker Client
       run: |-
+        sudo gcloud auth login --no-launch-browser
         gcloud auth configure-docker --quiet
         gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
 
