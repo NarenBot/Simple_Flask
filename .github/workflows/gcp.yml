@@ -23,7 +23,7 @@ jobs:
     - name: Automatic Tagging of Releases
       id: increment-git-tag
       run: |-
-        bash ./scripts/git_update.sh -v patch
+        bash ./scripts/git_update.sh -v minor
 
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
