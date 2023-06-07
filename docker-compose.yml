@@ -2,6 +2,6 @@ version: "3.0"
 services:
   flaskapp:
     build: .
-    # ports:
-    #   - "8000:8000"
+    ports:
+      - "8000:8000"
     network_mode: host 
