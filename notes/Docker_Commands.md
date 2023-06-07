@@ -1,7 +1,7 @@
 # Basic Commands:
 01. docker version [Show the Docker version information]
 02. docker ps [List containers]
-03. docker images [List images]
+03. docker images [List images] (docker image ls)
 04. docker build [Build an image from a Dockerfile]
 05. docker create/ run [Create a new container/ Create+Run]
 06. docker info [Display system-wide information]
@@ -84,6 +84,7 @@
 - docker cp <srcpath> container-name:<despath>
     - docker cp C:\Users\Naren\iNeuron\Screenshots\JSON.png web3:/tmp/
     - docker exec web3 ls /tmp/
+- docker rmi <imagename:tag> or <image-id>
 - docker rm -f web3 [To remove container with forcifully]
 - docker logs web3
 ```
@@ -160,5 +161,5 @@
 - docker system df
 - docker system df -v [verbose]
 - docker system prune
-- docker system prune -a
+- docker system prune -a [It will Delete all images and containers]
 ```

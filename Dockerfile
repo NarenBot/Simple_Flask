@@ -1,6 +1,9 @@
-FROM python:3.8-slim-buster
+FROM ubuntu:18.04
+MAINTAINER narenmohan88@gmail.com
 WORKDIR /src
 COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE $PORT
-CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
+RUN apt-get update -y
+RUN apt-get install python3-pip -y
+RUN apt-get install gunicorn3 -y
+RUN pip3 install -r requirements.txt
+CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app:app", "--workers=4"]

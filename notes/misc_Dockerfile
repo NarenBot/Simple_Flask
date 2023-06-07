@@ -1,7 +1,7 @@
 ### HEROKU ###
 FROM python:3.8
-COPY . /app
 WORKDIR /app
+COPY . /app
 RUN pip install -r requirements.txt
 EXPOSE $PORT
 CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
@@ -15,17 +15,49 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE $PORT
 CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
 
+### EC2-Elastic Container Registry ###
+FROM ubuntu:18.04
+MAINTAINER narenmohan88@gmail.com
+WORKDIR /src
+COPY . .
+RUN apt-get update -y
+RUN apt-get install python3-pip -y
+RUN apt-get install gunicorn3 -y
+RUN pip3 install -r requirements.txt
+CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app:app", "--workers=4"]
+
 
 ### PYTHON-RUNNING-LOCAL ### [Flask==2.2.3]
-# [Note: Port should be same in app.py and Dockerfile (or) Port must be present add in app.py]
+# [Note: Port should be same in app.py and Dockerfile (or) Port must be present in app.py]
 FROM python:3.8-slim-buster
 WORKDIR /src
 COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE 5000
-CMD [ "python", "app.py"]
+EXPOSE 8000
+CMD ["python", "app.py"]
+----------------------------------------------------------------------------------------------------------------------
+## docker-compose.yml
+version: "3.0"
+services:
+  application:
+    image: flaskapp
+    ports:
+      - '5000:5000'
 
 
+version: "3.0"
+services:
+  flaskapp:
+    build: .
+    ports:
+      - "8000:8000"
+      # - "80:80"
+    # environment: 
+    #   - SERVER_NAME=0.0.0.0
+    network_mode: host  # bridge - Container network is isolated from the Host network.
+    
+
+----------------------------------------------------------------------------------------------------------------------
 ### PYTHON-RUNNING ### [Flask==2.2.3, Should not add app.run() inside app.py]
 # FROM python:3.8-slim-buster
 # WORKDIR /app
@@ -34,7 +66,6 @@ CMD [ "python", "app.py"]
 # COPY . .
 # EXPOSE 8000
 # CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8000"]
-
 
 ### FOR DOCKER COMPOSE ###
 FROM python:3.7-alpine

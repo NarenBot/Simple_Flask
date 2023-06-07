@@ -2,30 +2,10 @@
 - Need to check whether billing account was linked with my project.
 - Need to create service accounts based on each services with active keys.
 
-### Commands:
-#### For Container Registry:
-```bash
-- gcloud auth login
-- gcloud projects list
-- gcloud auth activate-service-account ACCOUNT --key-file=KEY-FILE
-- gcloud auth configure-docker
-- docker push gcr.io/ml-project-382217/flask-app:red
-- docker pull gcr.io/ml-project-382217/flask-app:red
-- gcloud config set project <project-name>
-- gcloud config set run/region us-central1
-- gcloud builds submit --tag gcr.io/ml-project-382217/flask-app:red .  # [Build image on cloud]
-- gcloud run deploy --image gcr.io/ml-project-382217/flask-app:red  # [Deploy on Cloud Run]
-```
-#### For Artifact Registry:
-``` bash
-- gcloud auth configure-docker asia-south1-docker.pkg.dev  # [To Configure Docker]
-- gcloud builds submit --tag asia-south1-docker.pkg.dev/ml-project-382217/images/flask-app:red .
-- gcloud run deploy --image asia-south1-docker.pkg.dev/ml-project-382217/images/flask-app:red  # [Deploy on Cloud Run]
-```
-
 ### Linux Terminal Commands:
 ``` bash
 - cd #Change directory
+- cd .. # To go back.
 - ls
 - ls -a
 - ls -la # List hidden files
@@ -36,6 +16,34 @@
 - vim <filename>
 - nano <filename>
 - cat <fileName>
+```
+
+### Commands:
+#### For Container Registry:
+```bash
+- gcloud auth login
+- gcloud projects list
+- gcloud auth activate-service-account ACCOUNT --key-file=KEY-FILE
+- gcloud auth configure-docker
+- docker push gcr.io/ml-project-382217/flask-app:red
+- docker pull gcr.io/ml-project-382217/flask-app:red
+- gcloud config set project <project-id>
+- gcloud config set run/region us-central1
+- gcloud builds submit --tag gcr.io/ml-project-382217/flask-app:red .  # [Build image and push on cloud]
+- gcloud run deploy --image gcr.io/ml-project-382217/flask-app:red  # [Deploy on Cloud Run]
+```
+#### For Artifact Registry:
+``` bash
+- gcloud auth configure-docker asia-south1-docker.pkg.dev  # [To Configure Docker]
+- gcloud builds submit --tag asia-south1-docker.pkg.dev/ml-project-382217/images/flask-app:red .
+- gcloud run deploy --image asia-south1-docker.pkg.dev/ml-project-382217/images/flask-app:red  # [Deploy on Cloud Run]
+```
+
+### For Azure Container Registry:
+```bash
+- docker build -t <resgroup>.azurecr.io/<imagename>:latest .
+- docker login <resgroup>.azurecr.io
+- docker push <resgroup>.azurecr.io/<imagename>:latest
 ```
 
 
