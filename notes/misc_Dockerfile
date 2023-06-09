@@ -1,3 +1,32 @@
+### GCP-Cloud Run-Container Registry ### 
+# [Container will exited once you run locally] [Here you dont need to add Port in app.py]
+FROM python:3.8-slim-buster
+WORKDIR /src
+COPY . /src
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE $PORT
+CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
+
+### AWS_EC2-Elastic Container Registry ###
+FROM ubuntu:18.04
+MAINTAINER narenmohan88@gmail.com
+WORKDIR /src
+COPY . /src
+RUN apt-get update -y
+RUN apt-get install python3-pip -y
+RUN apt-get install gunicorn3 -y
+RUN pip3 install -r requirements.txt
+CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app:app", "--workers=4"]
+
+### PYTHON-RUNNING-LOCAL ### [Flask==2.2.3]
+# [Note: Port should be same in app.py and Dockerfile (or) Port must be present in app.py]
+FROM python:3.8-slim-buster
+WORKDIR /src
+COPY . /src
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8000
+CMD ["python", "app.py"]
+
 ### HEROKU ###
 FROM python:3.8
 WORKDIR /app
@@ -5,36 +34,6 @@ COPY . /app
 RUN pip install -r requirements.txt
 EXPOSE $PORT
 CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
-
-### Cloud Run-Container Registry ### 
-# [Container will exited once you run locally] [Here you dont need to add Port in app.py]
-FROM python:3.8-slim-buster
-WORKDIR /src
-COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE $PORT
-CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app:app
-
-### EC2-Elastic Container Registry ###
-FROM ubuntu:18.04
-MAINTAINER narenmohan88@gmail.com
-WORKDIR /src
-COPY . .
-RUN apt-get update -y
-RUN apt-get install python3-pip -y
-RUN apt-get install gunicorn3 -y
-RUN pip3 install -r requirements.txt
-CMD ["gunicorn3", "-b", "0.0.0.0:8000", "app:app", "--workers=4"]
-
-
-### PYTHON-RUNNING-LOCAL ### [Flask==2.2.3]
-# [Note: Port should be same in app.py and Dockerfile (or) Port must be present in app.py]
-FROM python:3.8-slim-buster
-WORKDIR /src
-COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
-EXPOSE 8000
-CMD ["python", "app.py"]
 ----------------------------------------------------------------------------------------------------------------------
 ## docker-compose.yml
 version: "3.0"

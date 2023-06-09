@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER narenmohan88@gmail.com
 WORKDIR /src
-COPY . .
+COPY . /src
 RUN apt-get update -y
 RUN apt-get install python3-pip -y
 RUN apt-get install gunicorn3 -y
